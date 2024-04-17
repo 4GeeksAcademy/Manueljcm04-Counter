@@ -1,6 +1,8 @@
 //import react into the bundle
 import React from "react";
 import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
+import "../styles/index.css"
 
 // include your styles into the webpack bundle
 import reloj from "./../img/reloj.png";
@@ -8,19 +10,46 @@ import reloj from "./../img/reloj.png";
 //import your own components
 import Home from "./component/home.jsx";
 
-function SimpleCounter(){
+function SimpleCounter(props) {
     return (<div className="bigCounter">
-        <div className="calendar">
-            <img reloj></i>
-        </div>
-        <div className="four">0</div>
-        <div className="three">0</div>
-        <div className="two">0</div>
-        <div className="one">0</div>
+
+
+        <img className="calendar" src={reloj} />
+
+
+        <div className="four numero">{props.digitFour}</div>
+        <div className="three numero">{props.digitThree}</div>
+        <div className="two numero">{props.digitTwo}</div>
+        <div className="one numero">{props.digitOne}</div>
     </div>);
 }
+SimpleCounter.propTypes = {
+    digitFour: PropTypes.number,
+    digitThree: PropTypes.number,
+    digitTwo: PropTypes.number,
+    digitOne: PropTypes.number,
+
+}
+
+let counter = 0;
+let one = 0;
+let two = 0;
+let three = 0;
+let four = 0;
+setInterval(function () {
+    four = Math.floor(counter / 1000);
+    three = Math.floor(counter / 100);
+    two = Math.floor(counter / 10);
+    one = Math.floor(counter / 1);
+    console.log(four, three, two, one);
+
+    counter++;
+    ReactDOM.render(<SimpleCounter digitOne={one} digitTwo={two} digitThree={three} digitFour={four} />, document.querySelector("#app"));
+
+}, 1000
+
+)
 
 //render your react application
-ReactDOM.render(<SimpleCounter />, document.querySelector("#app"));
 
 
