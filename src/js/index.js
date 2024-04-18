@@ -17,10 +17,10 @@ function SimpleCounter(props) {
         <img className="calendar" src={reloj} />
 
 
-        <div className="four numero">{props.digitFour}</div>
-        <div className="three numero">{props.digitThree}</div>
-        <div className="two numero">{props.digitTwo}</div>
-        <div className="one numero">{props.digitOne}</div>
+        <div className="four numero">{props.digitFour %10}</div>
+        <div className="three numero">{props.digitThree %10}</div>
+        <div className="two numero">{props.digitTwo %10}</div>
+        <div className="one numero">{props.digitOne %10}</div>
     </div>);
 }
 SimpleCounter.propTypes = {
